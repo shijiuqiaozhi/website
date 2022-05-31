@@ -18,6 +18,7 @@
               />
             </div>
             <el-menu
+              router
               :default-active="activeIndex"
               class="el-menu-demo menu"
               background-color="rgb(56,119,185)"
@@ -28,12 +29,17 @@
             >
               <el-menu-item
                 class="hvr-icon-shrink" 
-                index="1" 
+                index="1"
+                :route="{
+                  path: '/',
+                  name: 'mainPage',
+                  component: 'mainPage'
+                }"
               >
                 <el-icon>
-                  <House class=" hvr-icon" />
+                  <House class="hvr-icon" />
                 </el-icon>
-                <span >首页</span>
+                <span>首页</span>
               </el-menu-item>
               <el-menu-item
                 class="hvr-icon-shrink" 
@@ -82,96 +88,7 @@
             </div>
           </el-header>
           <el-main class="main">
-            <span class="title">产力链产业</span>
-            <el-row gutter="20">
-              <el-col
-                v-for="(item) in listArr"
-                :key="item"
-                :span="6"
-              >
-                <el-card 
-                  :body-style="{ padding: '0px' }"
-                  shadow="hover"
-                  class="hvr-underline-reveal"
-                >
-                  <el-image
-                    :src="require('../assets/'+item.src)"
-                    class="image hvr-grow"
-                  />
-                  <div style="padding: 14px">
-                    <span>{{ item.name }}</span>
-                    <div class="bottom">
-                      <el-button 
-                        text 
-                        class="button"
-                      >
-                        Operating
-                      </el-button>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-            <span class="title" style="width: 372px;">
-              产业园区质量赋能站
-            </span>
-            <el-row gutter="20">
-              <el-col
-                v-for="(item) in sListArr"
-                :key="item"
-                :span="6"
-              >
-                <el-card 
-                  :body-style="{ padding: '0px' }"
-                  shadow="hover"
-                  style="height: 350px;"
-                  class="hvr-underline-reveal"
-                >
-                  <el-image
-                    :src="require('../assets/'+item.src)"
-                    class="image hvr-grow"
-                  />
-                  <div style="padding: 14px">
-                    <span>{{ item.name }}</span>
-                    <div class="bottom">
-                      <el-button 
-                        text 
-                        class="button"
-                      >
-                        Operating
-                      </el-button>
-                    </div>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-            <span class="title">
-              相关链接
-            </span>
-            <el-row gutter="25">
-              <el-col :span="7">
-                <a
-                  href="https://www.baidu.com/" 
-                  style="outline: none;"
-                >
-                  <el-image
-                    style="width: 289px; height: 48px; left: -17px;"
-                    :src="require('../assets/'+'relative1.png')" 
-                  />
-                </a>
-              </el-col>
-              <el-col :span="6">
-                <a
-                  href="https://www.baidu.com/" 
-                  style="outline: none;"
-                >
-                  <el-image
-                    style="width: 289px; height: 48px;"
-                    :src="require('../assets/'+'relative2.png')" 
-                  />
-                </a>
-              </el-col>
-            </el-row>
+            <router-view />
           </el-main>
         </el-container>
     </el-container>
@@ -186,13 +103,13 @@
         </div>
       </div>
       <div class="off-line">
-        <el-row gutter="20">
+        <el-row :gutter="20">
           <el-col
             v-for="(item, index) in footerList"
             :key="index" 
             :span="8"
           >
-            <div class="off-line-title">
+            <div class="off-line-title hvr-bounce-out">
               {{ item.title }}
             </div>
             <div
@@ -211,7 +128,11 @@
         </el-row>
       </div>
       <div class="copy-rights">
-
+        <div class="copy-contents">
+          © Copyrights 2021 浙江九安检测科技有限公司. All rights reserved
+          <div class="line" />
+          浙公网安备 XXXXXXXXXXXXXX号
+        </div>
       </div>
     </el-footer>
   </div>
@@ -227,6 +148,7 @@ export default {
   },
   data() {
     return {
+      activeIndex: 1,
       listArr: [
         {
           src: 'card1.png',
@@ -283,6 +205,12 @@ export default {
         }
       ]
     }
+  },
+  methods() {
+
+  },
+  mounted() {
+    console.log(this);
   }
 }
 
@@ -340,19 +268,6 @@ export default {
   .main {
     display: flex;
     flex-direction: column;
-
-    .title {
-      width: 256px;
-      height: 45px;
-      font-family: PingFangSC-Semibold;
-      font-size: 32px;
-      color: #1B5393;
-      letter-spacing: 0;
-      font-weight: 600;
-      margin-top: 30px;
-      margin-bottom: 30px;
-      margin-left: -40px;
-    }
   }
   
   .footer {
@@ -407,6 +322,19 @@ export default {
     
     .copy-rights {
       height: auto;
+
+      .copy-contents {
+        padding: 10px 0;
+        line-height: 30px;
+
+        .line {
+          width: 1px;
+          height: 14px;
+          background: #c2c3c3;
+          display: inline-block;
+          margin: 0 8px 0 8px;
+        }
+      }
     }
   }
 </style>
