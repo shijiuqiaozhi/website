@@ -26,22 +26,49 @@
               :ellipsis="false"
               @select="handleSelect"
             >
-              <el-menu-item index="1">
+              <el-menu-item
+                class="hvr-icon-shrink" 
+                index="1" 
+              >
                 <el-icon>
-                  <House />
+                  <House class=" hvr-icon" />
                 </el-icon>
-                <span>首页</span>
+                <span >首页</span>
               </el-menu-item>
-              <el-menu-item index="2">
+              <el-menu-item
+                class="hvr-icon-shrink" 
+                index="2"
+              >
+                <el-icon>
+                  <EditPen class="hvr-icon"/>
+                </el-icon>
                 在线填报委托
               </el-menu-item>
-              <el-menu-item index="3">
+              <el-menu-item 
+                class="hvr-icon-shrink"
+                index="3"
+              >
+                <el-icon>
+                  <Files class="hvr-icon"/>
+                </el-icon>
                 进度和报告查询
               </el-menu-item>
-              <el-menu-item index="4">
+              <el-menu-item 
+                class="hvr-icon-shrink"
+                index="4"
+              >
+                <el-icon>
+                  <ChatDotRound class="hvr-icon"/>
+                </el-icon>
                 在线投诉
               </el-menu-item>
-              <el-menu-item index="5">
+              <el-menu-item
+                class="hvr-icon-shrink" 
+                index="5"
+              >
+                <el-icon>
+                  <Connection class="hvr-icon"/>
+                </el-icon>
                 查询投诉
               </el-menu-item>
             </el-menu>
@@ -65,10 +92,11 @@
                 <el-card 
                   :body-style="{ padding: '0px' }"
                   shadow="hover"
+                  class="hvr-underline-reveal"
                 >
                   <el-image
                     :src="require('../assets/'+item.src)"
-                    class="image"
+                    class="image hvr-grow"
                   />
                   <div style="padding: 14px">
                     <span>{{ item.name }}</span>
@@ -84,11 +112,110 @@
                 </el-card>
               </el-col>
             </el-row>
+            <span class="title" style="width: 372px;">
+              产业园区质量赋能站
+            </span>
+            <el-row gutter="20">
+              <el-col
+                v-for="(item) in sListArr"
+                :key="item"
+                :span="6"
+              >
+                <el-card 
+                  :body-style="{ padding: '0px' }"
+                  shadow="hover"
+                  style="height: 350px;"
+                  class="hvr-underline-reveal"
+                >
+                  <el-image
+                    :src="require('../assets/'+item.src)"
+                    class="image hvr-grow"
+                  />
+                  <div style="padding: 14px">
+                    <span>{{ item.name }}</span>
+                    <div class="bottom">
+                      <el-button 
+                        text 
+                        class="button"
+                      >
+                        Operating
+                      </el-button>
+                    </div>
+                  </div>
+                </el-card>
+              </el-col>
+            </el-row>
+            <span class="title">
+              相关链接
+            </span>
+            <el-row gutter="25">
+              <el-col :span="7">
+                <a
+                  href="https://www.baidu.com/" 
+                  style="outline: none;"
+                >
+                  <el-image
+                    style="width: 289px; height: 48px; left: -17px;"
+                    :src="require('../assets/'+'relative1.png')" 
+                  />
+                </a>
+              </el-col>
+              <el-col :span="6">
+                <a
+                  href="https://www.baidu.com/" 
+                  style="outline: none;"
+                >
+                  <el-image
+                    style="width: 289px; height: 48px;"
+                    :src="require('../assets/'+'relative2.png')" 
+                  />
+                </a>
+              </el-col>
+            </el-row>
           </el-main>
-          <el-footer>Footer</el-footer>
         </el-container>
     </el-container>
   </div>
+  <div style="background:rgb(244,245,247) ">
+    <el-footer class="footer">
+      <div class="top-line">
+        <div class="footer-title">
+          <span class="hvr-back-pulse">
+            技术支持:浙江九安检测科技有限公司
+          </span>
+        </div>
+      </div>
+      <div class="off-line">
+        <el-row gutter="20">
+          <el-col
+            v-for="(item, index) in footerList"
+            :key="index" 
+            :span="8"
+          >
+            <div class="off-line-title">
+              {{ item.title }}
+            </div>
+            <div
+              v-for="(litem, lindex) in item.contents"
+              :key="lindex" 
+              class="off-line-content"
+            >
+              <span
+                class="hvr-underline-from-left" 
+                style="cursor: pointer;"
+              > 
+                {{ litem }}  
+              </span> 
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="copy-rights">
+
+      </div>
+    </el-footer>
+  </div>
+  
 </template>
 
 
@@ -117,6 +244,43 @@ export default {
           src: 'card2.png',
           name: '新能源充电桩产业',
         }
+      ],
+      sListArr: [
+        {
+          src: 'energy.png',
+          name: '开发区质量赋能站',
+        }, 
+        {
+          src: 'waiting.png',
+          name: '质量赋能站建设中...',
+        },
+        {
+          src: 'waiting.png',
+          name: '质量赋能站建设中...',
+        },
+        {
+          src: 'waiting.png',
+          name: '质量赋能站建设中...',
+        }
+      ],
+      footerList: [
+        {
+          title: '检测能力',
+          contents: ['执行标准', '检测方案', '检测项目']
+        }, 
+        {
+          title: '检测动态',
+          contents: [
+            '第四分院多措施并举加强党建工作',
+            '我院参加"读党史，守初心，担使命"演讲比赛',
+             '院各党支部开展8月主题党日活动',
+             '院党委理论学习中心组开展2020年度第七次集体学习'
+          ]
+        },
+        {
+          title: '关于我们',
+          contents: ['公司简介', '可持续发展', '奖项荣誉', '新闻动态']
+        }
       ]
     }
   }
@@ -126,6 +290,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import url("@/css/hover.css");
 .container {
   background: rgb(244,245,247);
 }
@@ -140,7 +305,7 @@ export default {
   align-items: flex-start;
   height: auto;
   padding: 0;
-  margin-bottom: 90px;
+  margin-bottom: 60px;
 
   .imgs {
     float: left;
@@ -148,7 +313,8 @@ export default {
   }
 
   .menu {
-    width: 1200px;
+    min-width: 1200px;
+    max-width: 1200px;
   }
 
   .notice {
@@ -183,9 +349,64 @@ export default {
       color: #1B5393;
       letter-spacing: 0;
       font-weight: 600;
+      margin-top: 30px;
       margin-bottom: 30px;
       margin-left: -40px;
     }
   }
   
+  .footer {
+    color: white;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 1400px;
+    background: rgb(36,105,179);
+
+    .top-line {
+      border-bottom: 1px solid rgb(245,245,245);
+      height: 65px;
+      display: block;
+      width: 100%;
+
+      .footer-title {
+        padding-top: 30px;
+        float: left;
+
+        span {
+          font-family: PingFangSC-Semibold;
+          font-size: 18px;
+          color: #FFFFFF;
+          letter-spacing: 0;
+          line-height: 30px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .off-line {
+      height: auto;
+      border-bottom: 1px solid rgb(245,245,245);
+
+      .off-line-title {
+        font-family: PingFangSC-Semibold;
+        font-size: 18px;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        line-height: 30px;
+        font-weight: 600;
+        padding-bottom: 30px;
+      }
+
+      .off-line-content {
+        font-family: PingFangSC-Semibold;
+        padding-bottom: 30px;
+      }
+    }
+    
+    .copy-rights {
+      height: auto;
+    }
+  }
 </style>
