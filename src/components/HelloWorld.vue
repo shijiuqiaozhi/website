@@ -44,6 +44,11 @@
               <el-menu-item
                 class="hvr-icon-shrink" 
                 index="2"
+                :route="{
+                  path: '/authorizeForm',
+                  name: 'authroizeForm',
+                  component: 'authorizeForm'
+                }"
               >
                 <el-icon>
                   <EditPen class="hvr-icon"/>
@@ -53,6 +58,11 @@
               <el-menu-item 
                 class="hvr-icon-shrink"
                 index="3"
+                :route="{
+                  path: '/authorizeTable',
+                  name: 'authorizeTable',
+                  component: 'authorizeTable'
+                }"
               >
                 <el-icon>
                   <Files class="hvr-icon"/>
@@ -93,124 +103,30 @@
         </el-container>
     </el-container>
   </div>
-  <div style="background:rgb(244,245,247) ">
-    <el-footer class="footer">
-      <div class="top-line">
-        <div class="footer-title">
-          <span class="hvr-back-pulse">
-            技术支持:浙江九安检测科技有限公司
-          </span>
-        </div>
-      </div>
-      <div class="off-line">
-        <el-row :gutter="20">
-          <el-col
-            v-for="(item, index) in footerList"
-            :key="index" 
-            :span="8"
-          >
-            <div class="off-line-title hvr-bounce-out">
-              {{ item.title }}
-            </div>
-            <div
-              v-for="(litem, lindex) in item.contents"
-              :key="lindex" 
-              class="off-line-content"
-            >
-              <span
-                class="hvr-underline-from-left" 
-                style="cursor: pointer;"
-              > 
-                {{ litem }}  
-              </span> 
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="copy-rights">
-        <div class="copy-contents">
-          © Copyrights 2021 浙江九安检测科技有限公司. All rights reserved
-          <div class="line" />
-          浙公网安备 XXXXXXXXXXXXXX号
-        </div>
-      </div>
-    </el-footer>
-  </div>
-  
+  <footer-section />
 </template>
 
 
 <script>
+import footerSection from '@/components/footer.vue'
 export default {
   name: 'HelloWorld',
+  components: {
+    footerSection,
+  },  
   props: {
     msg: String
   },
   data() {
     return {
       activeIndex: 1,
-      listArr: [
-        {
-          src: 'card1.png',
-          name: '光电显示板产业',
-        }, 
-        {
-          src: 'card2.png',
-          name: '纺织产业',
-        },
-        {
-          src: 'card1.png',
-          name: '智能制造产业',
-        },
-        {
-          src: 'card2.png',
-          name: '新能源充电桩产业',
-        }
-      ],
-      sListArr: [
-        {
-          src: 'energy.png',
-          name: '开发区质量赋能站',
-        }, 
-        {
-          src: 'waiting.png',
-          name: '质量赋能站建设中...',
-        },
-        {
-          src: 'waiting.png',
-          name: '质量赋能站建设中...',
-        },
-        {
-          src: 'waiting.png',
-          name: '质量赋能站建设中...',
-        }
-      ],
-      footerList: [
-        {
-          title: '检测能力',
-          contents: ['执行标准', '检测方案', '检测项目']
-        }, 
-        {
-          title: '检测动态',
-          contents: [
-            '第四分院多措施并举加强党建工作',
-            '我院参加"读党史，守初心，担使命"演讲比赛',
-             '院各党支部开展8月主题党日活动',
-             '院党委理论学习中心组开展2020年度第七次集体学习'
-          ]
-        },
-        {
-          title: '关于我们',
-          contents: ['公司简介', '可持续发展', '奖项荣誉', '新闻动态']
-        }
-      ]
     }
   },
   methods() {
 
   },
   mounted() {
-    console.log(this);
+    console.log(this.$router);
   }
 }
 
@@ -227,13 +143,21 @@ export default {
   justify-content: center;
 }
 
+.footer-contents {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 1200px;
+}
+
 .header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: auto;
   padding: 0;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 
   .imgs {
     float: left;
@@ -275,8 +199,7 @@ export default {
     height: auto;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    max-width: 1400px;
+    width: 100%;
     background: rgb(36,105,179);
 
     .top-line {

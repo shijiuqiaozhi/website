@@ -1,6 +1,6 @@
 <template>
   <span class="title">产力链产业</span>
-    <el-row gutter="20">
+    <el-row :gutter="20">
       <el-col
         v-for="(item) in listArr"
         :key="item"
@@ -32,7 +32,7 @@
     <span class="title" style="width: 372px;">
       产业园区质量赋能站
     </span>
-    <el-row gutter="20">
+    <el-row :gutter="20">
       <el-col
         v-for="(item) in sListArr"
         :key="item"
@@ -65,7 +65,7 @@
     <span class="title">
       相关链接
     </span>
-    <el-row gutter="25">
+    <el-row :gutter="25">
       <el-col :span="7">
         <a
           href="https://www.baidu.com/" 
@@ -135,25 +135,6 @@ export default {
           name: '质量赋能站建设中...',
         }
       ],
-      footerList: [
-        {
-          title: '检测能力',
-          contents: ['执行标准', '检测方案', '检测项目']
-        }, 
-        {
-          title: '检测动态',
-          contents: [
-            '第四分院多措施并举加强党建工作',
-            '我院参加"读党史，守初心，担使命"演讲比赛',
-             '院各党支部开展8月主题党日活动',
-             '院党委理论学习中心组开展2020年度第七次集体学习'
-          ]
-        },
-        {
-          title: '关于我们',
-          contents: ['公司简介', '可持续发展', '奖项荣誉', '新闻动态']
-        }
-      ]
     }
   },
   methods() {
