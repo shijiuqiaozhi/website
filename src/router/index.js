@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import mainPage from '@/components/mainPage'
 import authorizeForm from '@/components/tables/authorize'
 import authorizeTable from '@/components/tables/authorizeTable'
+import loginForm from '@/components/loginForm'
 
 const routerHistory = createWebHistory()
 
@@ -22,6 +23,11 @@ const Router = createRouter({
       path: '/authorizeTable',
       name: 'authorizeTable',
       component: authorizeTable
+    },
+    {
+      path: '/loginForm',
+      name: 'loginForm',
+      component: loginForm,
     }
   ]
 })

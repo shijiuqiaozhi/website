@@ -8,14 +8,25 @@
           "
         >
           <el-header class="header">
-            <div class="imgs">
-              <el-image 
-                :src="require('@/assets/logo.png')"
-              />
-              <el-image
-                style="margin-bottom: 15px;"
-                :src="require('@/assets/文字logo.svg')"
-              />
+            <div class="header-top">
+              <div class="imgs">
+                <el-image 
+                  :src="require('@/assets/logo.png')"
+                />
+                <el-image
+                  style="margin-bottom: 15px;"
+                  :src="require('@/assets/文字logo.svg')"
+                />
+              </div>
+              <div class="loginEnter">
+                您好，请
+                <a 
+                  href="/loginForm"
+                  class="login-a" 
+                >
+                  登录
+                </a>
+              </div>
             </div>
             <el-menu
               router
@@ -149,6 +160,21 @@ export default {
   flex-direction: column;
   margin: 0 auto;
   width: 1200px;
+}
+
+.header-top {
+  display: flex; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.login-a {
+  text-decoration:none;
+  color: black;
+}
+
+.login-a:hover {
+  color:  #79bbff;
 }
 
 .header {
