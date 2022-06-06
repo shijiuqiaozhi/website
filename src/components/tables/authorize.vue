@@ -8,7 +8,6 @@
     :model="ruleForm"
     :rules="rules"
     label-width="120px"
-    class="demo-ruleForm"
   >
     <el-form-item label="委托单号" prop="name">
       <el-input 
@@ -80,10 +79,14 @@
       <el-input v-model="ruleForm.desc" type="textarea" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)"
-        >保存</el-button
+      <el-button 
+        type="primary"
+        class="hvr-round-corners" 
+        @click="submitForm(ruleFormRef)"
       >
-      <el-button @click="resetForm()">重置</el-button>
+        保存
+      </el-button>
+      <el-button class="hvr-round-corners" @click="resetForm()">重置</el-button>
     </el-form-item>
   </el-form>
 </div>
@@ -110,7 +113,14 @@ export default {
   },
   methods: {
     submitForm() {
-
+      let storedArr = JSON.parse(sessionStorage.getItem('tableData')) || [];
+      console.log('sta', storedArr);
+      storedArr.push(this.ruleForm);
+      sessionStorage['tableData'] = [JSON.stringify(storedArr)];
+      this.$message({
+        message: '保存成功',
+        type: 'success'
+      });
     },
 
     resetForm() {
@@ -134,6 +144,7 @@ export default {
 }
 
 .background {
+  border-radius: 20px;
   background-image: url('@/assets/表单背景.png');
   background-repeat: no-repeat;
   background-position: center;

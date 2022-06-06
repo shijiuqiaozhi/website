@@ -16,17 +16,60 @@
     </label> -->
     <el-form :model="loginForm">
       <el-form-item>
-        <span>账号</span>
+        <span>用户名</span>
         <el-input v-model="loginForm.account" />
       </el-form-item>
       <el-form-item>
-        <span>密码</span>
-        <el-input v-model="loginForm.password" />
+        <span 
+          style="display: block; width: 100%"
+        >
+          密码
+        </span>
+        <el-input 
+          v-model="loginForm.password"
+          style="width: 218px;"
+          show-password
+        >
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="authCode">
+        <span 
+          style="
+            padding-right: 10px;
+          "
+        >
+          验证码:
+        </span>
+        <el-input 
+          v-model="loginForm.authCode"
+          style="width: 76px;"  
+        />
+        <div 
+          class="get-code" 
+          @click="refreshCode()"
+        >
+          <s-identify :identifyCode="identifyCode" />
+        </div>
       </el-form-item>
     </el-form>
-    <p class="forgot-pass">忘记密码?</p>
+    <p class="forgot-pass">
+      <span class="pass-content">忘记密码?</span>
+    </p>
     <button type="button" class="submit" @click="login">登录</button>
-    <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
+    <div class="relevance-icons">
+      <img 
+        class="wechat" 
+        src="@/assets/weixin.svg" 
+      />
+      <img 
+        class="wechat" 
+        src="@/assets/qq.svg" 
+      />
+      <img 
+        class="wechat" 
+        src="@/assets/weibo.svg" 
+      />
+    </div>
   </div>
   <div class="sub-cont">
     <div class="img">
@@ -47,35 +90,45 @@
       <h2>欢迎加入</h2>
       <label>
         <span>用户名</span>
-        <input type="text" />
+        <el-input v-model="registerForm.account" />
       </label>
       <label>
         <span>邮箱</span>
-        <input type="email" />
+        <el-input v-model="registerForm.email" />
       </label>
       <label>
         <span>密码</span>
-        <input type="password" />
+        <el-input v-model="registerForm.password" />
       </label>
       <button type="button" class="submit">注册</button>
-      <button type="button" class="fb-btn">Join with <span>facebook</span></button>
-      <div class="relevance-icons">
-
-      </div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import SIdentify from "@/components/sIdentify.vue";
 export default {
+  components: { SIdentify },
   data() {
     return {
+      identifyCode: "",
+      ifHideChange: false,
+      identifyCodes: "0123456789abcdwerwshdjeJKDHRJHKOOPLMKQ",//绘制的随机数
       loginForm: {
         account: '',
         password: '',
-      }
+        authCode: '',
+      },
+      registerForm: {
+        account: '',
+        email: '',
+        password: '',
+      },
     };
+  },
+  created() {
+    this.refreshCode()
   },
   mounted() {
     document.querySelector('.img__btn').addEventListener('click', () => {
@@ -85,8 +138,23 @@ export default {
   methods: {
     login() {
       console.log('this', this);
+    },
+    // 刷新验证码
+    refreshCode() {
+      this.identifyCode = "";
+      this.makeCode(this.identifyCodes,4);
+    },
+    randomNum (min, max) {
+      max = max + 1
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+    // 随机生成验证码字符串
+    makeCode (data, len) {
+      for (let i = 0; i < len; i++) {
+      this.identifyCode += data[this.randomNum(0, data.length - 1)]
     }
   }
+}
 }
 </script>
 
@@ -132,6 +200,7 @@ $diffRatio: ($contW - $imgW, $contW);
 }
 
 .cont {
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
   width: $contW;
@@ -339,10 +408,15 @@ input {
   color: #cfcfcf;
 }
 
+.pass-content:hover {
+  color:  #a0cfff;
+  cursor: pointer;
+}
+
 .submit {
   margin-top: 40px;
   margin-bottom: 20px;
-  background: #d4af7a;
+  background: #409EFF;
   text-transform: uppercase;
 }
 
@@ -387,7 +461,18 @@ input {
     text-align: center;
   }
 
-  .relevance-icons {
+  .get-code {
+    cursor: pointer;
+  }
 
+  .wechat {
+    cursor: pointer;
+  }
+  .relevance-icons {
+    display: flex;
+    flex: 1;
+    margin: 0 auto;
+    justify-content: space-around;
+    width: 260px;
   }
 </style>

@@ -1,5 +1,10 @@
 <template>
-  <span class="title">产力链产业</span>
+  <span 
+    class="title"
+    style="width: 240px;"
+  >
+    产力链产业
+  </span>
     <el-row :gutter="20">
       <el-col
         v-for="(item) in listArr"
@@ -62,7 +67,10 @@
         </el-card>
       </el-col>
     </el-row>
-    <span class="title">
+    <span 
+      class="title"
+      style="width: 210px;"
+    >
       相关链接
     </span>
     <el-row :gutter="25">
@@ -89,7 +97,7 @@
         </a>
       </el-col>
     </el-row>
-    <el-backtop :right="50" :bottom="50" />
+    <el-backtop :right="25" :bottom="25" />
 </template>
 
 <script>
@@ -138,8 +146,10 @@ export default {
       ],
     }
   },
-  methods() {
-
+  methods: {
+    showReact() {
+      console.log(111);
+    }
   },
 }
 </script>
@@ -156,5 +166,11 @@ export default {
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: -40px;
+}
+.web-form {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  cursor: pointer;
 }
 </style>

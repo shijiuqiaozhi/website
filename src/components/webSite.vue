@@ -8,26 +8,27 @@
           "
         >
           <el-header class="header">
-            <div class="header-top">
-              <div class="imgs">
-                <el-image 
-                  :src="require('@/assets/logo.png')"
-                />
-                <el-image
-                  style="margin-bottom: 15px;"
-                  :src="require('@/assets/文字logo.svg')"
-                />
-              </div>
-              <div class="loginEnter">
-                您好，请
-                <a 
-                  href="/loginForm"
-                  class="login-a" 
-                >
-                  登录
-                </a>
-              </div>
+          <div class="header-top">
+            <div class="imgs">
+              <el-image 
+                :src="require('@/assets/logo.png')"
+              />
+              <el-image
+                style="margin-bottom: 15px;"
+                :src="require('@/assets/文字logo.svg')"
+              />
             </div>
+            <div class="loginEnter">
+              您好，请
+              <a 
+                href="/loginForm"
+                class="login-a" 
+              >
+                登录
+              </a>
+            </div>
+          </div>
+          <el-affix>
             <el-menu
               router
               :default-active="activeIndex"
@@ -99,14 +100,15 @@
                 查询投诉
               </el-menu-item>
             </el-menu>
-            <div class="notice">
-              <el-image
-                class="notice-image"
-                :src="require('@/assets/notice.svg')" />
-              <p class="notice-content">
-                苏州市质检院“你送我检”活动工作方案：根据省局《关于开展2021年度第二次“你送我检”活动的通知》（浙质监发〔2014〕101号）要求我院于“六 • 一”儿童…
-              </p>
-            </div>
+          </el-affix>
+          <div class="notice">
+            <el-image
+              class="notice-image"
+              :src="require('@/assets/notice.svg')" />
+            <p class="notice-content">
+              苏州市质检院“你送我检”活动工作方案：根据省局《关于开展2021年度第二次“你送我检”活动的通知》（浙质监发〔2014〕101号）要求我院于“六 • 一”儿童…
+            </p>
+          </div>
           </el-header>
           <el-main class="main">
             <router-view />
@@ -121,7 +123,7 @@
 <script>
 import footerSection from '@/components/footer.vue'
 export default {
-  name: 'HelloWorld',
+  name: 'webSite',
   components: {
     footerSection,
   },  
@@ -130,7 +132,7 @@ export default {
   },
   data() {
     return {
-      activeIndex: 1,
+      activeIndex: '1',
     }
   },
   methods() {
@@ -147,7 +149,25 @@ export default {
 <style lang="scss" scoped>
 @import url("@/css/hover.css");
 .container {
-  background: rgb(244,245,247);
+  background-color: rgb(244,245,247);
+  position: relative;
+  z-index: 1;
+}
+
+.container::before {
+  content: '';
+  background-image: url('@/assets/header-img.jpg');
+  background-attachment: fixed;
+  background-position: left;
+  transform: scale(1, 1);
+  background-repeat: no-repeat;
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
 }
 
 .el-container {
