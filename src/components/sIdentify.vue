@@ -57,11 +57,11 @@ export default {
     },
     contentWidth: {
       type: Number,
-      default: 90
+      default: 100
     },
     contentHeight: {
       type: Number,
-      default: 40
+      default: 32
     }
   },
   methods: {

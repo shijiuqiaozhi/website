@@ -22,14 +22,6 @@
           />
           <div style="padding: 14px">
             <span>{{ item.name }}</span>
-            <div class="bottom">
-              <el-button 
-                text 
-                class="button"
-              >
-                Operating
-              </el-button>
-            </div>
           </div>
         </el-card>
       </el-col>
@@ -55,14 +47,14 @@
           />
           <div style="padding: 14px">
             <span>{{ item.name }}</span>
-            <div class="bottom">
+            <!-- <div class="bottom">
               <el-button 
                 text 
                 class="button"
               >
                 Operating
               </el-button>
-            </div>
+            </div> -->
           </div>
         </el-card>
       </el-col>
@@ -97,7 +89,6 @@
         </a>
       </el-col>
     </el-row>
-    <el-backtop :right="25" :bottom="25" />
 </template>
 
 <script>

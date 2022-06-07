@@ -144,13 +144,21 @@ export default {
 }
 
 .background {
-  border-radius: 20px;
-  background-image: url('@/assets/表单背景.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   position: relative;
   text-align: center;
+}
+
+.background::before {
+  border-radius: 20px;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+  background-color: white;
 }
 
 .formTitle {
@@ -159,6 +167,7 @@ export default {
   font-weight: 800;
   margin-left: 30px;
   margin-bottom: 18px;
+  margin-top: 18px;
   color: #1B5393;
   width: 176px;
   border-bottom: 5px solid #409eff;

@@ -28,7 +28,6 @@
               </a>
             </div>
           </div>
-          <el-affix>
             <el-menu
               router
               :default-active="activeIndex"
@@ -84,6 +83,11 @@
               <el-menu-item 
                 class="hvr-icon-shrink"
                 index="4"
+                :route="{
+                  path: '/complaintForm',
+                  name: 'complaintForm',
+                  component: complaintForm
+                }"
               >
                 <el-icon>
                   <ChatDotRound class="hvr-icon"/>
@@ -93,6 +97,11 @@
               <el-menu-item
                 class="hvr-icon-shrink" 
                 index="5"
+                :route="{
+                  path: '/complaintTable',
+                  name: 'complaintTable',
+                  component: complaintTable
+                }"
               >
                 <el-icon>
                   <Connection class="hvr-icon"/>
@@ -100,7 +109,6 @@
                 查询投诉
               </el-menu-item>
             </el-menu>
-          </el-affix>
           <div class="notice">
             <el-image
               class="notice-image"
@@ -115,17 +123,21 @@
           </el-main>
         </el-container>
     </el-container>
+    <web-click-form />
   </div>
+  <el-backtop :right="25" :bottom="25" />
   <footer-section />
 </template>
 
 
 <script>
 import footerSection from '@/components/footer.vue'
+import WebClickForm from './webClickForm.vue';
 export default {
   name: 'webSite',
   components: {
     footerSection,
+    WebClickForm,
   },  
   props: {
     msg: String
@@ -134,9 +146,6 @@ export default {
     return {
       activeIndex: '1',
     }
-  },
-  methods() {
-
   },
   mounted() {
     console.log(this.$router);
@@ -306,4 +315,5 @@ export default {
       }
     }
   }
+  
 </style>

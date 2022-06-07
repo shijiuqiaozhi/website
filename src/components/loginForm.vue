@@ -14,35 +14,29 @@
       <span>验证码</span>
       <input type="password" />
     </label> -->
-    <el-form :model="loginForm">
-      <el-form-item>
-        <span>用户名</span>
-        <el-input v-model="loginForm.account" />
+    <el-form 
+      :model="loginForm" 
+      :rules="loginRules"
+      label-width="205px"
+    >
+      <el-form-item prop="account" label="用户名">
+        <el-input 
+          v-model="loginForm.account" 
+          required
+        />
       </el-form-item>
-      <el-form-item>
-        <span 
-          style="display: block; width: 100%"
-        >
-          密码
-        </span>
+      <el-form-item prop="password" label="密码">
         <el-input 
           v-model="loginForm.password"
-          style="width: 218px;"
           show-password
+          required
         >
         </el-input>
       </el-form-item>
-      <el-form-item prop="authCode">
-        <span 
-          style="
-            padding-right: 10px;
-          "
-        >
-          验证码:
-        </span>
+      <el-form-item prop="authCode" label="验证码">
         <el-input 
           v-model="loginForm.authCode"
-          style="width: 76px;"  
+          style="width: 110px;"  
         />
         <div 
           class="get-code" 
@@ -58,15 +52,15 @@
     <button type="button" class="submit" @click="login">登录</button>
     <div class="relevance-icons">
       <img 
-        class="wechat" 
+        class="wechat hvr-grow" 
         src="@/assets/weixin.svg" 
       />
       <img 
-        class="wechat" 
+        class="wechat hvr-grow" 
         src="@/assets/qq.svg" 
       />
       <img 
-        class="wechat" 
+        class="wechat hvr-grow" 
         src="@/assets/weibo.svg" 
       />
     </div>
@@ -88,19 +82,29 @@
     </div>
     <div class="form sign-up">
       <h2>欢迎加入</h2>
-      <label>
-        <span>用户名</span>
-        <el-input v-model="registerForm.account" />
-      </label>
-      <label>
-        <span>邮箱</span>
-        <el-input v-model="registerForm.email" />
-      </label>
-      <label>
-        <span>密码</span>
-        <el-input v-model="registerForm.password" />
-      </label>
-      <button type="button" class="submit">注册</button>
+      <el-form
+        :model="registerForm"
+        :rules="registerRules"
+        label-width="205px"
+      >
+        <el-form-item prop="account" label="用户名">
+          <el-input v-model="registerForm.account" />
+        </el-form-item>
+        <el-form-item prop="email" label="邮箱">
+          <el-input v-model="registerForm.email" />
+        </el-form-item>
+        <el-form-item prop="password" label="密码">
+          <el-input v-model="registerForm.password" />
+        </el-form-item>
+      </el-form>
+        
+      <button 
+        type="button" 
+        class="submit"
+        @click="register"
+      >
+        注册
+      </button>
     </div>
   </div>
 </div>
@@ -125,6 +129,28 @@ export default {
         email: '',
         password: '',
       },
+      loginRules: {
+        account: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+        ],
+        authCode: [
+          { required: true, message: '请输入验证码', trigger: 'blur' },
+        ]
+      },
+      registerRules: {
+        account: [
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+        ],
+        email: [
+          { required: true, message: '请输入邮箱', trigger: 'blur' },
+        ],
+      }
     };
   },
   created() {
@@ -138,6 +164,9 @@ export default {
   methods: {
     login() {
       console.log('this', this);
+    },
+    register() {
+
     },
     // 刷新验证码
     refreshCode() {
@@ -376,6 +405,7 @@ h2 {
   width: 100%;
   font-size: 26px;
   text-align: center;
+  margin-bottom: 18px;
 }
 
 label {
@@ -448,14 +478,9 @@ input {
   }
 }
 //新加的css
-  :deep(.el-form-item__content) {
-    justify-content: center;
-  }
-
   .el-input {
     display: block;
-    width: 100%;
-    margin-top: 5px;
+    width: 210px;
     padding-bottom: 5px;
     font-size: 16px;
     text-align: center;
@@ -468,11 +493,20 @@ input {
   .wechat {
     cursor: pointer;
   }
+
   .relevance-icons {
     display: flex;
     flex: 1;
     margin: 0 auto;
     justify-content: space-around;
     width: 260px;
+  }
+
+  :deep(.el-form-item__error) {
+    left: unset;
+  }
+
+  :deep(.el-form-item__label) {
+    color: #cfcfcf;
   }
 </style>
