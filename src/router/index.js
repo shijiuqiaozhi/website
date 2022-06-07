@@ -1,12 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import mainPage from '@/components/mainPage'
-import authorizeForm from '@/components/tables/authorize'
-import authorizeTable from '@/components/tables/authorizeTable'
-import loginForm from '@/components/loginForm'
-import complaint from '@/components/tables/complaint'
-import complaintTable from '@/components/tables/complaintTable'
+import { createRouter, createWebHistory } from 'vue-router';
+import mainPage from '@/components/mainPage';
+import authorizeForm from '@/components/tables/authorize';
+import authorizeTable from '@/components/tables/authorizeTable';
+import loginForm from '@/components/loginForm';
+import complaint from '@/components/tables/complaint';
+import complaintTable from '@/components/tables/complaintTable';
 
-const routerHistory = createWebHistory()
+const routerHistory = createWebHistory();
 
 const Router = createRouter({
   history: routerHistory,
@@ -14,35 +14,35 @@ const Router = createRouter({
     {
       path: '/',
       name: 'mainPage',
-      component: mainPage
-    }, 
+      component: mainPage,
+    },
     {
       path: '/authorizeForm',
       name: 'authroizeForm',
-      component: authorizeForm
+      component: authorizeForm,
     },
     {
       path: '/authorizeTable',
       name: 'authorizeTable',
-      component: authorizeTable
+      component: authorizeTable,
     },
     {
       path: '/complaintForm',
       name: 'complaintForm',
-      component: complaint
+      component: complaint,
     },
     {
       path: '/complaintTable',
       name: 'complaintTable',
-      component: complaintTable
+      component: complaintTable,
     },
     {
       path: '/loginForm',
       name: 'loginForm',
       component: loginForm,
-    }
-  ]
-})
+    },
+  ],
+});
 
 /* Router.beforeEach((to, from, next) => {
   if (to.path === '/loginForm') {
@@ -56,4 +56,4 @@ const Router = createRouter({
   }
 }) */
 
-export default Router
+export default Router;

@@ -1,16 +1,16 @@
 <template>
-  <webSite msg="Welcome to Your Vue.js App"/>
+  <webSite msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import webSite from './components/webSite.vue'
+import webSite from './components/webSite.vue';
 
 export default {
   name: 'App',
   components: {
-    webSite
-  }
-}
+    webSite,
+  },
+};
 </script>
 
 <style>

@@ -1,68 +1,68 @@
 <template>
   <div class="s-canvas">
-    <canvas 
-      id="s-canvas" 
-      :width="contentWidth" 
+    <canvas
+      id="s-canvas"
+      :width="contentWidth"
       :height="contentHeight"
     />
   </div>
 </template>
 <script>
 export default {
-  name: "SIdentify",
+  name: 'SIdentify',
   props: {
     identifyCode: {
       type: String,
-      default: "1234"
+      default: '1234',
     },
     fontSizeMin: {
       type: Number,
-      default: 35
+      default: 35,
     },
     fontSizeMax: {
       type: Number,
-      default: 35
+      default: 35,
     },
     backgroundColorMin: {
       type: Number,
-      default: 180
+      default: 180,
     },
     backgroundColorMax: {
       type: Number,
-      default: 240
+      default: 240,
     },
     colorMin: {
       type: Number,
-      default: 50
+      default: 50,
     },
     colorMax: {
       type: Number,
-      default: 160
+      default: 160,
     },
     lineColorMin: {
       type: Number,
-      default: 100
+      default: 100,
     },
     lineColorMax: {
       type: Number,
-      default: 200
+      default: 200,
     },
     dotColorMin: {
       type: Number,
-      default: 0
+      default: 0,
     },
     dotColorMax: {
       type: Number,
-      default: 255
+      default: 255,
     },
     contentWidth: {
       type: Number,
-      default: 100
+      default: 100,
     },
     contentHeight: {
       type: Number,
-      default: 32
-    }
+      default: 32,
+    },
   },
   methods: {
     // 生成一个随机数
@@ -74,34 +74,34 @@ export default {
       let r = this.randomNum(min, max);
       let g = this.randomNum(min, max);
       let b = this.randomNum(min, max);
-      return "rgb(" + r + "," + g + "," + b + ")";
+      return 'rgb(' + r + ',' + g + ',' + b + ')';
     },
     transparent() {
-      return "rgb(255,255,255)";
+      return 'rgb(255,255,255)';
     },
     drawPic() {
-      let canvas = document.getElementById("s-canvas");
-      let ctx = canvas.getContext("2d");
-      ctx.textBaseline = "bottom";
+      let canvas = document.getElementById('s-canvas');
+      let ctx = canvas.getContext('2d');
+      ctx.textBaseline = 'bottom';
       // 绘制背景
-       //ctx.fillStyle = this.randomColor(
-         //this.backgroundColorMin,
-        // this.backgroundColorMax
-       //);
+      //ctx.fillStyle = this.randomColor(
+      //this.backgroundColorMin,
+      // this.backgroundColorMax
+      //);
       ctx.fillStyle = this.transparent();
       ctx.fillRect(0, 0, this.contentWidth, this.contentHeight);
       // 绘制文字
       for (let i = 0; i < this.identifyCode.length; i++) {
         this.drawText(ctx, this.identifyCode[i], i);
       }
-   //绘制背景
-       //this.drawLine(ctx)
-       //this.drawDot(ctx)
+      //绘制背景
+      //this.drawLine(ctx)
+      //this.drawDot(ctx)
     },
     drawText(ctx, txt, i) {
       ctx.fillStyle = this.randomColor(this.colorMin, this.colorMax);
       ctx.font =
-        this.randomNum(this.fontSizeMin, this.fontSizeMax) + "px SimHei";
+        this.randomNum(this.fontSizeMin, this.fontSizeMax) + 'px SimHei';
       let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1));
       let y = this.randomNum(this.fontSizeMax, this.contentHeight - 5);
       var deg = this.randomNum(-10, 10);
@@ -146,15 +146,15 @@ export default {
         );
         ctx.fill();
       }
-    }
+    },
   },
   watch: {
     identifyCode() {
       this.drawPic();
-    }
+    },
   },
   mounted() {
     this.drawPic();
-  }
+  },
 };
 </script>

@@ -1,73 +1,120 @@
 <template>
-<div class="background">
-  <span class="formTitle">
-    在线投诉
-  </span>
-  <el-form
-    ref="ruleFormRef"
-    :model="ruleForm"
-    :rules="rules"
-    label-width="120px"
-  >
-    <el-form-item label="投诉类型" prop="region">
-      <el-select v-model="ruleForm.region" placeholder="请选择投诉类型">
-        <el-option label="其他" value="shanghai" />
-      </el-select>
-    </el-form-item>
-    <el-form-item label="委托单编号" prop="id">
-      <el-input 
-        v-model="ruleForm.id"
-        placeholder="请选择委托单编号"
-        disabled 
-      />
-      <el-button @click="dialogTableVisible = true">选择委托单号</el-button>
-    </el-form-item>
-    <el-form-item label="姓名" prop="name">
-      <el-input placeholder="请输入姓名" />
-    </el-form-item>
-    <el-form-item label="电话" prop="phone">
-      <el-input placeholder="请输入电话" />
-    </el-form-item>
-    <el-form-item label="主题" prop="theme">
-      <el-input placeholder="请输入主题" />
-    </el-form-item>
-    <el-form-item label="内容" prop="desc">
-      <el-input v-model="ruleForm.desc" type="textarea" />
-    </el-form-item>
-    <el-form-item>
-      <el-button 
-        type="primary"
-        class="hvr-round-corners" 
-        @click="submitForm(ruleFormRef)"
-      >
-        保存
-      </el-button>
-      <el-button class="hvr-round-corners" @click="resetForm()">重置</el-button>
-    </el-form-item>
-  </el-form>
-  <el-dialog v-model="dialogTableVisible" title="委托单">
-    <el-table 
-      :data="gridData"
-      border
+  <div class="background">
+    <span class="formTitle"> 在线投诉 </span>
+    <el-form
+      ref="ruleFormRef"
+      :model="ruleForm"
+      :rules="rules"
+      label-width="120px"
     >
-      <el-table-column property="entrust" label="委托单号" width="150" />
-      <el-table-column property="applyDate" label="申请日期" width="200" />
-      <el-table-column property="remark" label="备注" />
-      <el-table-column fixed="right" label="操作" width="120">
-        <template #default="{ row }">
-          <el-button 
-            link 
-            type="primary" 
-            size="small" 
-            @click="handleClick(row)"
-          >
-            选择
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </el-dialog>
-</div>
+      <el-form-item
+        label="投诉类型"
+        prop="region"
+      >
+        <el-select
+          v-model="ruleForm.region"
+          placeholder="请选择投诉类型"
+        >
+          <el-option
+            label="其他"
+            value="shanghai"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item
+        label="委托单编号"
+        prop="id"
+      >
+        <el-input
+          v-model="ruleForm.id"
+          placeholder="请选择委托单编号"
+          disabled
+        />
+        <el-button @click="dialogTableVisible = true">选择委托单号</el-button>
+      </el-form-item>
+      <el-form-item
+        label="姓名"
+        prop="name"
+      >
+        <el-input placeholder="请输入姓名" />
+      </el-form-item>
+      <el-form-item
+        label="电话"
+        prop="phone"
+      >
+        <el-input placeholder="请输入电话" />
+      </el-form-item>
+      <el-form-item
+        label="主题"
+        prop="theme"
+      >
+        <el-input placeholder="请输入主题" />
+      </el-form-item>
+      <el-form-item
+        label="内容"
+        prop="desc"
+      >
+        <el-input
+          v-model="ruleForm.desc"
+          type="textarea"
+        />
+      </el-form-item>
+      <el-form-item>
+        <el-button
+          type="primary"
+          class="hvr-round-corners"
+          @click="submitForm(ruleFormRef)"
+        >
+          保存
+        </el-button>
+        <el-button
+          class="hvr-round-corners"
+          @click="resetForm()"
+          >重置</el-button
+        >
+      </el-form-item>
+    </el-form>
+    <el-dialog
+      v-model="dialogTableVisible"
+      title="委托单"
+    >
+      <el-table
+        :data="gridData"
+        border
+      >
+        <el-table-column
+          property="entrust"
+          label="委托单号"
+          width="150"
+        />
+        <el-table-column
+          property="applyDate"
+          label="申请日期"
+          width="200"
+        />
+        <el-table-column
+          property="remark"
+          label="备注"
+        />
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="120"
+        >
+          <template #default="{ row }">
+            <el-button
+              link
+              type="primary"
+              size="small"
+              @click="handleClick(row)"
+            >
+              选择
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
@@ -95,9 +142,9 @@ export default {
         {
           entrust: 'JA2111010002',
           applyDate: '2021-04-21',
-          remark: '测试用备注'
-        }
-      ]
+          remark: '测试用备注',
+        },
+      ],
     };
   },
   methods: {
@@ -108,7 +155,7 @@ export default {
       sessionStorage['tableData'] = [JSON.stringify(storedArr)];
       this.$message({
         message: '保存成功',
-        type: 'success'
+        type: 'success',
       });
     },
     clickEnsure(row) {
@@ -119,17 +166,20 @@ export default {
       this.dialogTableVisible = false;
       this.$message({
         message: '选择成功',
-        type: 'success'
+        type: 'success',
       });
     },
     resetForm() {
       this.$refs.ruleFormRef.resetFields();
     },
-  }
-}
+  },
+};
 </script>
 
-<style  lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 .el-input {
   width: 276px;
 }
@@ -167,12 +217,12 @@ export default {
   margin-left: 30px;
   margin-bottom: 18px;
   margin-top: 18px;
-  color: #1B5393;
+  color: #1b5393;
   width: 176px;
   border-bottom: 5px solid #409eff;
 }
 
 .el-table {
-  --el-table-border-color:  #a0cfff;
+  --el-table-border-color: #a0cfff;
 }
 </style>
